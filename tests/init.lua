@@ -22,6 +22,6 @@ function test.update(dt)
 end
 
 function test.draw()
-	currentAnim:play(25, 25, 0, 4, 4)
+	currentAnim:play(32, 32, 0, 4, 4, 8, 8)
 end
 return test

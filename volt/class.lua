@@ -1,12 +1,13 @@
-volt.class = {}
-volt.class.__index = volt.class
+volt.Class = {}
+volt.Class.__index = volt.Class
 
 -- Default Implementation
-function volt.class:new() end
+function volt.Class:new() end
 
 -- Create a new class type from base class
-function volt.class:derive(type)
+function volt.Class:derive(type)
 	local class = {}
+	class["__call"] = volt.Class._call
 	class.type = type
 	class.super = self
 	class.__index = class
@@ -14,13 +15,13 @@ function volt.class:derive(type)
 	return class
 end
 
-function volt.class:__call(...)
+function volt.Class:__call(...)
 	local inst = setmetatable({}, self)
 	---@diagnostic disable-next-line: redundant-parameter
 	inst:new(...)
 	return inst
 end
 
-function volt.class:getType()
+function volt.Class:getType()
 	return self.type
 end
